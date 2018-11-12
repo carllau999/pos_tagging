@@ -95,15 +95,13 @@ export default {
           }
           else{
             for(let j = 0; j<Object.keys(res.entities).length; j++){
-              if(i != Object.keys(res.pos).length - 1 && Object.keys(res.entities)[j].indexOf(word) > -1 && Object.keys(res.entities)[j].indexOf(Object.keys(res.pos)[i + 1]) > -1 ){
+              if(i != Object.keys(res.pos).length - 1 && Object.keys(res.entities)[j].indexOf(word) > -1 && (Object.keys(res.entities)[j].indexOf(Object.keys(res.pos)[i + 1]) > -1 )){
                 data.obj = res.entities[Object.keys(res.entities)[j]]
               }
             }
           }
           this.tableData.push(data)
         }
-
-
         this.nlpVisible = true
         // generate notifications
         this.$notify({

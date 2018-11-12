@@ -141,7 +141,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           }
           this.tableData.push(data);
         }
-
         this.nlpVisible = true;
         // generate notifications
         this.$notify({
@@ -367,4 +366,4 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
 /***/ })
 
 },[244]);
-//# sourceMappingURL=app.2b21fcf8e4903169a464.js.map
+//# sourceMappingURL=app.5779ec883dca0ad97999.js.map
