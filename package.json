@@ -1,5 +1,5 @@
 {
-  "name": "nlp pos tag",
+  "name": "nlp_pos_tagger",
   "version": "0.0.1",
   "description": "pos tagger",
   "author": "carlson lau",
