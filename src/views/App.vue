@@ -2,6 +2,7 @@
    <div id="app">
       <img src=".././assets/artificial-intelligence.png" width="100px" height="100px">
       <h1 class="mt-3">NLP Tagger</h1>
+      <h> Carlson Lau </h>
       <div class="container">
          <section>
             <template>
@@ -16,7 +17,9 @@
                </div>
                <el-button type="primary" @click="handleProcess">Analyse</el-button>
             </template>
+
          </section>
+
          <section>
             <el-dialog title="Summary" :visible.sync="nlpVisible" :close-on-click-modal="false">
               <h1>Detected Entities</h1>
