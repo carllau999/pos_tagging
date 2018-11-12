@@ -106,7 +106,7 @@ export default {
         // generate notifications
         this.$notify({
             title: 'Success',
-            message: 'Succesfully Funded!',
+            message: 'Succesfully Analysed!',
             type: 'success'
           });
       this.loading = false
