@@ -16,6 +16,7 @@
                     v-model="text">
             	  </el-input>
             	  <el-button type="primary" @click="handleProcess">Analyse</el-button>
+            	</br>
             	  Test Chinese:
             	  <el-input
                     type="textarea"
