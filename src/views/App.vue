@@ -7,6 +7,7 @@
          <section>
             <template>
                <div class="main">
+               	Test English:
                   <el-input
                     type="textarea"
                     :autosize="{ minRows: 5}"
@@ -15,6 +16,7 @@
                     v-model="text">
             	  </el-input>
             	  <el-button type="primary" @click="handleProcess">Analyse</el-button>
+            	  Test Chinese:
             	  <el-input
                     type="textarea"
                     :autosize="{ minRows: 5}"
