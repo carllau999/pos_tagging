@@ -10,12 +10,21 @@
                   <el-input
                     type="textarea"
                     :autosize="{ minRows: 5}"
-                    placeholder="Please input a sentence to test!"
+                    placeholder="Please input an English sentence to test!"
                     style="width:80%;"
                     v-model="text">
-            </el-input>
+            	  </el-input>
+            	  <el-button type="primary" @click="handleProcess">Analyse</el-button>
+            	  <el-input
+                    type="textarea"
+                    :autosize="{ minRows: 5}"
+                    placeholder="Please input a Chinese sentence to test!"
+                    style="width:80%;"
+                    v-model="text2">
+            	  </el-input>
+            	  <el-button type="primary" @click="handleProcessZh">Analyse</el-button>
                </div>
-               <el-button type="primary" @click="handleProcess">Analyse</el-button>
+               
             </template>
 
          </section>
@@ -65,7 +74,7 @@
 </template>
 
 <script>
-import {nlp} from './index.js'
+import {nlp, nlp_zh} from './index.js'
 import axios from 'axios'
 
 export default {
@@ -115,6 +124,50 @@ export default {
       this.loading = false
     })
    }
+   handleProcessZh: function(){
+    console.log("in handle process")
+    this.loading = true
+    this.tableData = []
+    this.tableData2 = []
+    // check if api call succesful
+    nlp_zh(this.text).then(res => {
+        console.log(res)
+        for(let k = 0; k<Object.keys(res.entities).length; k++){
+          this.tableData2.push({
+            word: Object.keys(res.entities)[k],
+            obj: res.entities[Object.keys(res.entities)[k]]
+          })
+        }
+        let data, word
+        for(let i =0; i<Object.keys(res.pos).length; i++){
+          word = Object.keys(res.pos)[i]
+          data = {
+            word: word,
+            tag: res.pos[word],
+            obj: ''
+          }
+          if(Object.keys(res.entities).indexOf(word) > -1){
+            data.obj = res.entities.word
+          }
+          else{
+            for(let j = 0; j<Object.keys(res.entities).length; j++){
+              if(i != Object.keys(res.pos).length - 1 && Object.keys(res.entities)[j].indexOf(word) > -1 && (Object.keys(res.entities)[j].indexOf(Object.keys(res.pos)[i + 1]) > -1 )){
+                data.obj = res.entities[Object.keys(res.entities)[j]]
+              }
+            }
+          }
+          this.tableData.push(data)
+        }
+        this.nlpVisible = true
+        // generate notifications
+        this.$notify({
+            title: 'Success',
+            message: 'Succesfully Analysed!',
+            type: 'success'
+          });
+      this.loading = false
+    })
+   }
  },
   data () {
     return {
@@ -123,6 +176,7 @@ export default {
       tableData: [],
       tableData2: [],
       text: 'The U.S. is ready to engage in talks about North Korea’s nuclear program even as it maintains pressure on Kim Jong Un’s regime, the Washington Post reported, citing an interview with Vice President Mike Pence. Pence and South Korea’s President Moon Jae-in agreed on a post-Olympics strategy during conversations at the Winter Olympics in the South Korean resort of Pyeongchang that Pence dubbed “maximum pressure and engagement at the same time.” Pence spoke in an interview on his way home from the Winter Olympics. “The point is, no pressure comes off until they are actually doing something that the alliance believes represents a meaningful step toward denuclearization,” the Post quoted Pence as saying. “So the maximum pressure campaign is going to continue and intensify. But if you want to talk, we’ll talk.”'
+      text2: '王小明在北京的清华大学读书'
 
     }
   }

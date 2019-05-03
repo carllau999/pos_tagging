@@ -20,8 +20,24 @@ async function nlp(sentence) {
 
 	}
 }
+async function nlp_zh(sentence) {
+	try {
+		let data = {'s': sentence}
+		console.log("in nlp")
+		let result = await axios.post(`https://taggingnlp.herokuapp.com/nlp_zh`, data)
+		console.log(result)
+		return result.data
+	} catch (error) {
+		console.log('error', error) // catch errors
+		return {
+			errors: error
+		}
+
+	}
+}
 
 
 export {
-	nlp
+	nlp,
+	nlp_zh
 }
