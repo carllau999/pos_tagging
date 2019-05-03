@@ -9,7 +9,7 @@ async function nlp(sentence) {
 	try {
 		let data = {'s': sentence}
 		console.log("in nlp")
-		let result = await axios.post(`https://taggingnlp.herokuapp.com/nlp`, data)
+		let result = await axios.post(`https://52f43078.ngrok.io/nlp`, data)
 		console.log(result)
 		return result.data
 	} catch (error) {
@@ -24,7 +24,7 @@ async function nlp_zh(sentence) {
 	try {
 		let data = {'s': sentence}
 		console.log("in nlp")
-		let result = await axios.post(`https://taggingnlp.herokuapp.com/nlp_zh`, data)
+		let result = await axios.post(`https://52f43078.ngrok.io/nlp_zh`, data)
 		console.log(result)
 		return result.data
 	} catch (error) {
