@@ -123,7 +123,7 @@ export default {
           });
       this.loading = false
     })
-   }
+   },
    handleProcessZh: function(){
     console.log("in handle process")
     this.loading = true
