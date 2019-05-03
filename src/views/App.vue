@@ -132,7 +132,7 @@ export default {
     this.tableData = []
     this.tableData2 = []
     // check if api call succesful
-    nlp_zh(this.text).then(res => {
+    nlp_zh(this.text2).then(res => {
         console.log(res)
         for(let k = 0; k<Object.keys(res.entities).length; k++){
           this.tableData2.push({
